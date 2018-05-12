@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Vue started</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-cmp></my-cmp>
+      <my-local-cmp></my-local-cmp>
+    </div>
+    <div id="app2">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+      Vue.component('my-cmp',{
+        template: '<p>Component template</p>'
+
+      });
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          msg: 'Hello Vue'
+        }
+      })
+     var vm2 = new Vue({
+        el: '#app', //el : 화면에서 달라붙는 부분
+        data: {
+          msg: 'Hello Vue'
+        },
+        created: function() { //라이프 사이클 훅
+          console.log('instance has been created')
+        },
+        components: {
+          'my-local-cmp': localCmp
+        }
+      });
+      var vm1 = new Vue({
+        el: '#app2'
+      })
+    </script>
+  </body>
+</html>

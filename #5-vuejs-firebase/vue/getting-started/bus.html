@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bus</title>
+</head>
+<body>
+  <div id="app">
+    <local-cmp></local-cmp>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+  <script>
+    var local_cmp = {
+      template: `
+      <div>
+        <p>Local Component</p>
+        <button @click="btnClick">click</button>
+      </div>
+      `,
+      methods: {
+        btnClick: function() {
+          bus.$emit('busevent');
+        }
+      }
+    }
+    var bus = new Vue();
+    var vm = new Vue({
+      el: '#app',
+      components: {
+        'local-cmp': local_cmp
+      },
+      created: function() {
+        bus.$on('busevent', function() {
+          console.log('Received  an event through bus')
+        })
+      }
+    });
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>offline app</title>
+</head>
+<body>
+  hello sw
+  <img src="images/yumi.jpg" alt="">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+    //성공했을때
+    .then(function(swReg){
+      console.log(swReg, 'is service work object');
+    })
+    .catch(function(err){
+      console.log(err, 'fail');
+    });
+  }
+</script>
+</body>
+</html>
